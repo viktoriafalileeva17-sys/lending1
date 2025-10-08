@@ -172,7 +172,12 @@
             // This is where you would send the data to your webhook (e.g., Make.com)
             console.log('Sending data to webhook:', leadData);
             // Example fetch:
-            // fetch('YOUR_MAKE_WEBHOOK_URL', {
+            fetch('[https://hook.eu1.make.com/your-unique-webhook-id](https://hook.eu1.make.com/your-unique-webhook-id)', {
+    method: 'POST',
+    body: JSON.stringify(leadData),
+    headers: { 'Content-Type': 'application/json' }
+}).then(response => console.log('Success!', response))
+  .catch(error => console.error('Error:', error));
             //     method: 'POST',
             //     body: JSON.stringify(leadData),
             //     headers: { 'Content-Type': 'application/json' }
