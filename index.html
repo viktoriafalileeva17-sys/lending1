@@ -120,7 +120,6 @@
 
         startAnalysisBtn.addEventListener('click', () => {
             const url = shopUrlInput.value.trim();
-            // Simplified validation to ensure the field is not empty
             if (url.length < 5) {
                 urlError.classList.remove('hidden');
                 return;
@@ -169,20 +168,17 @@
                 timestamp: new Date().toISOString()
             };
 
-            // This is where you would send the data to your webhook (e.g., Make.com)
-            console.log('Sending data to webhook:', leadData);
-            // Example fetch:
-            fetch('[https://hook.us2.make.com/iv5kaqc2d44h1vyseb2uaxfg1ssvj0kr](https://hook.us2.make.com/iv5kaqc2d44h1vyseb2uaxfg1ssvj0kr)', {
-    method: 'POST',
-    body: JSON.stringify(leadData),
-    headers: { 'Content-Type': 'application/json' }
-}).then(response => {
-    if (response.ok) {
-        console.log('Success!', response);
-    } else {
-        console.error('Webhook returned an error:', response.statusText);
-    }
-}).catch(error => console.error('Error sending data:', error));
+            fetch('https://hook.us2.make.com/iv5kaqc2d44h1vyseb2uaxfg1ssvj0kr', {
+                method: 'POST',
+                body: JSON.stringify(leadData),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Success! Data sent to Make.com');
+                } else {
+                    console.error('Webhook returned an error:', response.statusText);
+                }
+            }).catch(error => console.error('Error sending data:', error));
 
             step2.classList.add('hidden');
             step3.classList.remove('hidden');
